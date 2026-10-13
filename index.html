@@ -11,14 +11,18 @@
 <style>
 /* Layout: an audit-report spine — a narrow left rail of section labels beside wide content; tools shown as a control matrix. */
 :root {
-  --bg: #F3F5F8;
+  --bg: #F4F8F6;
   --surface: #FFFFFF;
-  --fg: #142033;
-  --muted: #566276;
-  --line: #D8DEE7;
-  --accent: #1D4B8F;
-  --accent-soft: #E3EBF7;
-  --pass: #2B7A57;
+  --fg: #10201B;
+  --muted: #4F6159;
+  --line: #D3E2DB;
+  --accent: #0A6B50;
+  --accent-soft: #E0F1E9;
+  --pass: #0A6B50;
+  --gold: #F2B705;
+  --hero-bg: #0B4A3A;
+  --hero-fg: #FFFFFF;
+  --hero-muted: #BFE0D3;
   --font-display: "Spectral", Georgia, "Times New Roman", serif;
   --font-body: "Public Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -32,14 +36,16 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0E1520; --surface: #151F2D; --fg: #E5EBF2; --muted: #9AA7B8;
-    --line: #26344A; --accent: #8DB2EA; --accent-soft: #1A2A42; --pass: #62C495;
+    --bg: #0B1412; --surface: #12201C; --fg: #E6F0EC; --muted: #9DB5AB;
+    --line: #22362F; --accent: #5ED3A8; --accent-soft: #15302A; --pass: #5ED3A8;
+    --gold: #F5C542; --hero-bg: #0E3B30; --hero-fg: #FFFFFF; --hero-muted: #B4D6C8;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0E1520; --surface: #151F2D; --fg: #E5EBF2; --muted: #9AA7B8;
-  --line: #26344A; --accent: #8DB2EA; --accent-soft: #1A2A42; --pass: #62C495;
+  --bg: #0B1412; --surface: #12201C; --fg: #E6F0EC; --muted: #9DB5AB;
+    --line: #22362F; --accent: #5ED3A8; --accent-soft: #15302A; --pass: #5ED3A8;
+    --gold: #F5C542; --hero-bg: #0E3B30; --hero-fg: #FFFFFF; --hero-muted: #B4D6C8;
   color-scheme: dark;
 }
 
@@ -60,6 +66,7 @@ p { margin: 0; }
 
 /* Top bar */
 .topbar {
+  border-top: 4px solid var(--gold);
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
   background: var(--bg); border-bottom: 1px solid var(--line);
   margin-inline: -20px; padding: 12px 20px;
@@ -72,28 +79,29 @@ p { margin: 0; }
 .nav a:hover { color: var(--accent); }
 
 /* Hero */
-.hero { padding-block: 64px 48px; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); letter-spacing: 0.04em; }
+.hero { background: var(--hero-bg); color: var(--hero-fg); box-shadow: 0 0 0 100vmax var(--hero-bg); clip-path: inset(0 -100vmax); padding-block: 64px 56px; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); color: var(--gold); letter-spacing: 0.04em; }
 .hero h1 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-4); line-height: 1.04; letter-spacing: -0.01em; margin-top: 14px; }
-.hero .role { font-size: var(--step-1); color: var(--muted); margin-top: 10px; font-weight: 500; }
-.hero .thesis { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: var(--step-2); line-height: 1.35; margin-top: 28px; max-width: 30ch; }
+.hero .role { font-size: var(--step-1); color: var(--hero-muted); margin-top: 10px; font-weight: 500; }
+.hero .thesis { color: var(--hero-fg); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: var(--step-2); line-height: 1.35; margin-top: 28px; max-width: 30ch; }
 .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--accent); }
-.btn.primary { background: var(--accent); color: var(--bg); }
-.btn.ghost { color: var(--accent); background: transparent; }
+.btn.primary { background: var(--gold); border-color: var(--gold); color: #10201B; }
+.btn.ghost { color: var(--hero-fg); border-color: var(--hero-muted); background: transparent; }
 .btn:hover { filter: brightness(1.08); }
 
-.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); font-size: var(--step--1); color: var(--muted); }
-.facts b { color: var(--fg); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.18); font-size: var(--step--1); color: var(--hero-muted); }
+.facts b { color: var(--gold); font-weight: 700; }
 
 /* Portrait frames */
+.hero .frame { border: 3px solid var(--gold); }
 .frame { position: relative; width: 100%; max-width: 100%; aspect-ratio: 4 / 5; border-radius: 4px; overflow: hidden; background: var(--accent-soft); border: 1px solid var(--line); }
 .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .frame .mono-mark { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: clamp(3rem, 9vw, 5rem); color: var(--accent); opacity: 0.55; }
 .portrait-wrap { position: relative; }
 .stamp {
   position: absolute; left: -18px; bottom: 28px;
-  background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--pass);
+  background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-left: 4px solid var(--gold);
   padding: 10px 14px; font-size: var(--step--1); line-height: 1.35; box-shadow: 0 6px 20px rgba(10, 20, 40, 0.08);
 }
 .stamp .mono { color: var(--pass); font-weight: 500; display: block; }
@@ -101,7 +109,7 @@ p { margin: 0; }
 /* Sections with left rail */
 section.block { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; padding-block: 56px; border-top: 1px solid var(--line); }
 .rail { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.03em; padding-top: 8px; }
-.rail b { display: block; color: var(--accent); font-weight: 500; }
+.rail b { display: block; color: var(--accent); font-weight: 600; font-size: 1.1rem; }
 .block h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-3); line-height: 1.15; }
 .lede { color: var(--muted); margin-top: 12px; max-width: 62ch; }
 
@@ -116,7 +124,7 @@ section.block { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap:
 .matrix { margin-top: 32px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); overflow: hidden; }
 .mrow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr) minmax(0, 1.6fr) minmax(0, 1.05fr); gap: 20px; padding: 16px 20px; border-top: 1px solid var(--line); align-items: start; }
 .mrow:first-child { border-top: 0; }
-.mhead { background: var(--accent-soft); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-block: 10px; }
+.mhead { background: var(--hero-bg); color: var(--hero-muted) !important; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-block: 10px; }
 .tool-name { font-weight: 600; }
 .tool-doi { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 4px; overflow-wrap: anywhere; }
 .fw { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
@@ -135,7 +143,7 @@ section.block { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap:
 .job ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 6px; max-width: 68ch; }
 
 .creds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
-.cred { padding-top: 14px; border-top: 2px solid var(--accent); }
+.cred { padding-top: 14px; border-top: 3px solid var(--gold); }
 .cred h3 { font-size: var(--step-0); font-weight: 600; }
 .cred p { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
 
@@ -359,7 +367,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size:
 const tools = [
   { name: "CMMC Readiness Toolkit", fw: "CMMC 2.0", desc: "Assesses small defense contractors' CMMC readiness and builds a prioritized remediation plan.", demo: "https://cmmc-readiness-toolkit.streamlit.app/", code: "https://github.com/Edward-Owusu/cmmc-readiness-toolkit", doi: "10.5281/zenodo.23176263" },
   { name: "HIPAA Audit Engine", fw: "HIPAA Security Rule", desc: "Maps safeguards to the HIPAA Security Rule and reports gaps. Requires no patient data.", demo: "https://hipaa-audit-engine.streamlit.app/", code: "https://github.com/Edward-Owusu/hipaa-audit-engine", doi: "10.5281/zenodo.23219111" },
-  { name: "SOX ITGC Audit Framework", fw: "SOX ITGC", desc: "Plans, tests and documents IT general controls across access, change management and IT operations.", demo: "", code: "https://github.com/Edward-Owusu", doi: "" },
+  { name: "SOX ITGC Audit Framework", fw: "SOX ITGC", desc: "Plans, tests and documents IT general controls across access, change management and IT operations.", demo: "https://sox-itgc-audit-framework.streamlit.app/", code: "https://github.com/Edward-Owusu/sox-itgc-audit-framework", doi: "10.5281/zenodo.23220075" },
   { name: "NIST SP 800-53 Assessment Tool", fw: "NIST SP 800-53", desc: "Scores control implementation against NIST 800-53 and flags deficiencies for remediation.", demo: "https://nist-800-53-assessment.streamlit.app", code: "https://github.com/Edward-Owusu/Nist-800-53-assessment-tool", doi: "10.5281/zenodo.23148159" },
   { name: "Vendor Risk Dashboard", fw: "Third-party risk", desc: "Scores and tracks vendor security risk with a heat map for leadership reporting.", demo: "https://vendor-risk-heatmap.streamlit.app/", code: "https://github.com/Edward-Owusu/vendor-risk-dashboard", doi: "10.5281/zenodo.23193527" },
   { name: "NIST AI RMF Audit Matrix", fw: "NIST AI RMF", desc: "Turns the Govern, Map, Measure and Manage functions into audit-ready AI governance controls.", demo: "https://ai-rmf-audit-matrix.streamlit.app", code: "https://github.com/Edward-Owusu/ai-rmf-audit-matrix", doi: "10.5281/zenodo.23221698" },
