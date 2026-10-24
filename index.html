@@ -259,7 +259,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size:
   <section class="block" id="tools">
     <div class="rail"><b>§ 2</b>Open-source tools</div>
     <div>
-      <h2>Ten free tools for organizations that can't afford consultants</h2>
+      <h2>Eleven free tools for organizations that can't afford consultants</h2>
       <p class="lede">Each tool is built in Python and Streamlit, runs live in the browser, and is archived on Zenodo with a citable DOI. All of them are free to use and adapt.</p>
       <div class="matrix" role="table" aria-label="Open-source GRC tools">
         <div class="mrow mhead" role="row">
@@ -390,7 +390,8 @@ const tools = [
   { name: "FedRAMP Cloud Analyzer", fw: "FedRAMP", desc: "Checks cloud security controls against FedRAMP baselines so smaller providers can see their gaps.", demo: "https://fedramp-cloud-analyzer.streamlit.app/", code: "https://github.com/Edward-Owusu/fedramp-cloud-analyzer", doi: "10.5281/zenodo.23172865" },
   { name: "Ransomware Resilience Framework", fw: "Ransomware readiness", desc: "Rates an organization's ability to prevent, withstand and recover from ransomware.", demo: "https://ransomware-resilience-framework.streamlit.app/", code: "https://github.com/Edward-Owusu/ransomware-resilience-framework", doi: "10.5281/zenodo.23195756" },
   { name: "Zero Trust IAM Auditor", fw: "NIST SP 800-207", desc: "Audits identity and access controls against Zero Trust principles and highlights gaps.", demo: "https://zero-trust-iam-auditor.streamlit.app", code: "https://github.com/Edward-Owusu/Zero-trust-iam-auditor", doi: "10.5281/zenodo.23167739" },
-  { name: "MFA Compliance Tracker", fw: "Identity / MFA", desc: "Measures MFA coverage and finds users and systems that are out of compliance.", demo: "https://mfa-compliance-tracker.streamlit.app/", code: "https://github.com/Edward-Owusu/mfa-compliance-tracker", doi: "10.5281/zenodo.23171910" }
+  { name: "MFA Compliance Tracker", fw: "Identity / MFA", desc: "Measures MFA coverage and finds users and systems that are out of compliance.", demo: "https://mfa-compliance-tracker.streamlit.app/", code: "https://github.com/Edward-Owusu/mfa-compliance-tracker", doi: "10.5281/zenodo.23171910" },
+  { name: "Risk Exception Tracker", fw: "NIST CSF 2.0 / ISO 27001", desc: "Tracks policy exceptions and risk acceptances, and flags the ones that are expired, self-approved or owned by someone who has left.", demo: "https://risk-exception-tracker.streamlit.app/", code: "https://github.com/Edward-Owusu/risk-exception-tracker", doi: "10.5281/zenodo.23615549" }
 ];
 const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 document.getElementById("tool-rows").innerHTML = tools.map(t => {
